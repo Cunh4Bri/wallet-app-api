@@ -2,6 +2,7 @@ const express = require("express");
 const db = require("./db");
 const routerCategories = require("./routes/categories");
 const routerUsers = require("./routes/users")
+const routerFinances = require("./routes/finances")
 
 const app = express();
 
@@ -14,7 +15,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/categories", routerCategories);
-app.use("/users",routerUsers)
+app.use("/users", routerUsers)
+app.use("/finances", routerFinances)
 
 app.listen(port, () => {
   db.connect()

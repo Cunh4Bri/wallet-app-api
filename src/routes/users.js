@@ -1,14 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db");
+const userQueries = require("../queries/users")
 
-const findByEmail = (email) => {
-  return (query = {
-    name: "fetch-user",
-    text: "SELECT * FROM users WHERE email = $1",
-    values: [email],
-  });
-};
 
 router.post("/", async (req, res) => {
   try {
@@ -22,7 +16,7 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: " E-mail is invalid" })
     }
 
-    const query = findByEmail(email)
+    const query = userQueries.findByEmail(email)
     const alreadyExist = await db.query(query)
 
     if (alreadyExist.rows[0]) {
@@ -59,7 +53,7 @@ router.put("/", async (req, res) => {
       return res.status(400).json({ error: " E-mail old is invalid" })
     }
 
-    const query = findByEmail(oldEmail)
+    const query = userQueries.findByEmail(oldEmail)
     const alreadyExist = await db.query(query)
     if (!alreadyExist.rows[0]) {
       return res.status(404).json({ error: "User does not exist" })
