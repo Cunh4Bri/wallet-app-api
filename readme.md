@@ -70,6 +70,6 @@ npm run start:dev
 npm run start
 ```
 
-## Exemple image Isomnia:
+## Exemple image Insomnia:
 
 <img src="./src/img/exampleGetCategories.png">
